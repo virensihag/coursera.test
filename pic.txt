@@ -1,0 +1,105 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.14.0/js/canvas-to-blob.min.js"></script>
+
+hii
+ <body>
+
+   <canvas #myCanvas width="800" height="800">
+
+
+</canvas>
+
+ <img [src]="data.image" style="position: absolute;top: 800px;">
+
+
+
+
+ </body>
+</html>
+
+
+import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Directive, ViewChild,ElementRef} from '@angular/core';
+import { SafeResourceUrl, 
+         DomSanitizer } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-image',
+  templateUrl: './image.component.html',
+  styleUrls: ['./image.component.css']
+})
+export class ImageComponent implements OnInit {
+
+ @ViewChild('myCanvas') canvasRef: ElementRef;
+  constructor() { }
+
+  ngOnInit() {
+this.pic();
+  }
+data={ 
+	image:''
+
+}
+public pic(){
+
+	  	let ctx: CanvasRenderingContext2D =
+    this.canvasRef.nativeElement.getContext('2d');
+
+  let img = new Image();
+ // img.setAttribute('crossOrigin', 'anonymous');
+  img.src = 'https://i.pinimg.com/736x/bd/ec/01/bdec016db5f355ea8848d32355f31725--blank-certificate-certificate-design.jpg';
+  img.onload = function() {
+	ctx.beginPath();
+    ctx.drawImage(img, 0, 0);
+    ctx.font = "30px Arial";
+    ctx.fillText("Viren Sihag ",300,250);
+    ctx.save();
+
+}
+ console.log(this.canvasRef.nativeElement.toDataURL("Image/jpg"));
+}
+}
+
+
+
+
+
+
+
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.14.0/js/canvas-to-blob.min.js"></script>
+ <body onload="draw();">
+   <canvas id="canvas" width="700" height="700">
+</canvas>
+
+<input onclick="abc()" type="button" value="save as"/>
+
+<img src=""/>
+
+<script type="text/javascript">
+
+var ctx;var img;
+function draw() {
+   ctx= document.getElementById('canvas').getContext('2d');
+  img = new Image();
+  img.setAttribute('crossOrigin', 'anonymous');
+  img.src = 'https://i.pinimg.com/736x/bd/ec/01/bdec016db5f355ea8848d32355f31725--blank-certificate-certificate-design.jpg';
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0);
+    ctx.font = "30px Arial";
+    ctx.fillText("Viren Sihag ",300,250);
+    ctx.save();
+   
+  };
+
+}
+
+function abc(){
+ var x=document.getElementById('canvas').toDataURL("Image/jpg");
+
+}
+ 
+</script>
+
+ </body>
+</html>
